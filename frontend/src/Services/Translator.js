@@ -7,11 +7,13 @@ const baseTranslation = (lang, kurdVal, sweVal, engVal) =>
     ? engVal
     : null;
 
-export const title = (lang) =>
-  baseTranslation(lang, 'bachi', 'test', 'Join our wedding!');
-export const submit = (lang) =>
-  baseTranslation(lang, 'afarin', 'test', 'Submit!');
-export const relationPlaceHolder = (lang) =>
-  baseTranslation(lang, 'afarin', 'relation', 'relation');
-export const namePlaceHolder = (lang) =>
-  baseTranslation(lang, 'nauwi', 'name', 'name');
+export const titleText = (lang) =>
+  baseTranslation(lang, 'Bexerben bo', 'Fira våran dag!', 'Join our wedding!');
+export const submitBtnText = (lang) =>
+  baseTranslation(lang, 'Bale', 'OSA', 'Submit!');
+export const languageBtnText = (lang) =>
+  baseTranslation(lang, 'Till Svenska', 'To English', 'Kurdi');
+export const relationText = (lang) =>
+  baseTranslation(lang, 'Shan yan Robin', 'Shan eller Robin', 'Shan or Robin');
+export const nameText = (lang) =>
+  baseTranslation(lang, 'Nauwet chiya', 'Namn', 'Name');
