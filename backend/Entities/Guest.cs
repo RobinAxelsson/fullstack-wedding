@@ -3,31 +3,31 @@ using Microsoft.Azure.Cosmos.Table;
 
 public class Guest : TableEntity
 {
-    public new string? RowKey { get; set; }
-    public new string? PartitionKey { get; set; }
     public string? Name { get; set; }
     public int Age { get; set; }
     public string? MyPreferedLanguage { get; set; }
+    public string? ClosestTo { get; set; }
+    public string? Relation { get; set; }
+    public string[] Hobbies { get; set; }
 
     public Guest(
     string? name,
     int age,
-    string? rowkey,
     string? myPreferedLanguage,
-    string? closestTo,
-    string? partitionKey
-,
-    string? ClosestTo)
+    string? closestTo, 
+    string[] hobbies,
+    string? relation)
     {
-        RowKey = rowkey ?? Guid.NewGuid().ToString("d");
-        PartitionKey = myPreferedLanguage;
+        RowKey = Guid.NewGuid().ToString("d");
+        PartitionKey = myPreferedLanguage ?? "english";
         Name = name;
         Age = age;
         MyPreferedLanguage = myPreferedLanguage;
         ClosestTo = closestTo;
+        Hobbies = hobbies;
+        Relation = relation;
     }
-    public Guest()
-    {
-    }
+    public Guest(){}
+
     public override string? ToString() => JsonSerializer.Serialize(this);
 }

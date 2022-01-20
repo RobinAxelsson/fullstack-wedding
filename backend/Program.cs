@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Microsoft.Azure.Cosmos.Table;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,23 +19,24 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/guest", async (Guest guest) => {
+app.MapPost("/guest", async (Guest guest) =>
+{
     guest.RowKey = Guid.NewGuid().ToString("d");
     guest.PartitionKey = guest.MyPreferedLanguage;
 
     Console.WriteLine(guest.ToString());
+    var repo = new Repository();
+    await repo.InsertGuest(guest);
     
-    var repository = new Repository();
-    //var response = await repository.AddOrUpdateGuest(guest); breaks
-    //Console.WriteLine("response: ", response);
-
     return Results.StatusCode(202);
 });
-app.MapPost("/song", (Song song) => {
+app.MapPost("/song", (Song song) =>
+{
     Console.WriteLine(song.ToString());
     return Results.StatusCode(202);
 });
-app.MapPost("/memory", (Memory memory) => {
+app.MapPost("/memory", (Memory memory) =>
+{
     Console.WriteLine(memory.ToString());
     return Results.StatusCode(202);
 });
