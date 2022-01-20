@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,28 +18,31 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.MapPost("/guest", async (Guest guest) => {
+    guest.RowKey = Guid.NewGuid().ToString("d");
+    guest.PartitionKey = guest.MyPreferedLanguage;
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    Console.WriteLine(guest.ToString());
+    
+    var repository = new Repository();
+    //var response = await repository.AddOrUpdateGuest(guest); breaks
+    //Console.WriteLine("response: ", response);
+
+    return Results.StatusCode(202);
+});
+app.MapPost("/song", (Song song) => {
+    Console.WriteLine(song.ToString());
+    return Results.StatusCode(202);
+});
+app.MapPost("/memory", (Memory memory) => {
+    Console.WriteLine(memory.ToString());
+    return Results.StatusCode(202);
+});
+// app.MapPost("/picture", () => {
+//     return Results.StatusCode(202);
+// });
 
 app.Run();
 
-record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+
+// public record Picture
