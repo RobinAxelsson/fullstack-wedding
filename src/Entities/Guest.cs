@@ -4,11 +4,12 @@ using Microsoft.Azure.Cosmos.Table;
 public record GuestDto(string Name, int Age, string MyPreferedLanguage, string ClosestTo, string[] Hobbies, string Relation);
 public class Guest : TableEntity
 {
-    public string? Name { get; set; }
+    public Guest(){}
+    public string Name { get; set; }
     public int Age { get; set; }
-    public string? MyPreferedLanguage { get; set; }
-    public string? ClosestTo { get; set; }
-    public string? Relation { get; set; }
+    public string MyPreferedLanguage { get; set; }
+    public string ClosestTo { get; set; }
+    public string Relation { get; set; }
     public string[] Hobbies { get; set; }
     public Guest(GuestDto guestDto)
     {
@@ -16,11 +17,11 @@ public class Guest : TableEntity
         PartitionKey = guestDto.MyPreferedLanguage ?? "english";
         Name = guestDto.Name;
         Age = guestDto.Age;
-        MyPreferedLanguage = guestDto.MyPreferedLanguage;
+        MyPreferedLanguage = guestDto.MyPreferedLanguage ?? "english";
         ClosestTo = guestDto.ClosestTo;
         Hobbies = guestDto.Hobbies;
         Relation = guestDto.Relation;
     }
-
+    public GuestDto ExtractDto() => new GuestDto(Name, Age, MyPreferedLanguage, ClosestTo, Hobbies, Relation);
     public override string? ToString() => JsonSerializer.Serialize(this);
 }

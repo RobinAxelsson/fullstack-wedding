@@ -16,14 +16,17 @@ public class Controller : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IResult> Guest([BindRequired] GuestDto guestDto)
+    public async Task<IActionResult> Guest([BindRequired] GuestDto guestDto)
     {
         var guest = new Guest(guestDto);
-        
         Console.WriteLine(guest.ToString());
-
         await _repository.InsertGuest(guest);
-
-        return Results.StatusCode(202);
+        return StatusCode(202);
+    }
+    [HttpGet]
+    public async Task<IEnumerable<GuestDto>> Guest()
+    {
+        var guests = await _repository.GetAllGuest();
+        return guests.Select(x => x.ExtractDto());
     }
 }

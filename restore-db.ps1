@@ -1,0 +1,1 @@
+Remove-Item -recurse -force __azurite
