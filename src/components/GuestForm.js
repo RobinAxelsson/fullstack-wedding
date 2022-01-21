@@ -1,14 +1,15 @@
 import {
   nameText,
-  relationText,
+  closestToText,
   submitBtnText,
   titleText,
 } from '../Services/Translator';
 import { useState } from 'react';
+import { postGuest } from '../Services/ApiClient';
 
 const GuestForm = ({ language }) => {
   const [name, setName] = useState([]);
-  const [relation, setRelation] = useState([]);
+  const [closestTo, setClosestTo] = useState([]);
 
   return (
     <div className="">
@@ -33,16 +34,17 @@ const GuestForm = ({ language }) => {
                 maxLength="30"
                 type="text"
                 className="w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block sm:text-sm border-gray-300 rounded-md"
-                placeholder={relationText(language)}
+                placeholder={closestToText(language)}
                 required
-                onChange={(e) => setRelation(e.target.value)}
+                onChange={(e) => setClosestTo(e.target.value)}
               />
             </div>
             <button
               className="mt-1 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
-                console.log('submitted', { name: name, relation: relation });
+                console.log('submitted', { name: name, closestTo: closestTo });
+                await postGuest({ name: name, closestTo: closestTo, language: language });
               }}
             >
               {submitBtnText(language)}

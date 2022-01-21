@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GuestForm from './components/GuestForm';
 import { useState } from 'react';
 import { languageBtnText } from './Services/Translator';
+import { testBackend } from './Services/ApiClient';
+
 function App() {
   document.title = 'Wedding app';
   const [language, setLanguage] = useState('eng');
@@ -33,6 +35,17 @@ function App() {
                 >
                   {languageBtnText(language)}
                 </button>
+                {process.env.REACT_APP_ENVIRONMENT === 'Development' && (
+                  <button
+                    className="mt-1 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      await testBackend();
+                    }}
+                  >
+                    Test Backend
+                  </button>
+                )}
               </div>
             }
           />

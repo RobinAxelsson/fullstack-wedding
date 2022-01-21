@@ -13,7 +13,7 @@ export const submitBtnText = (lang) =>
   baseTranslation(lang, 'Bale', 'OSA', 'Submit!');
 export const languageBtnText = (lang) =>
   baseTranslation(lang, 'Till Svenska', 'To English', 'Kurdi');
-export const relationText = (lang) =>
+export const closestToText = (lang) =>
   baseTranslation(lang, 'Shan yan Robin', 'Shan eller Robin', 'Shan or Robin');
 export const nameText = (lang) =>
   baseTranslation(lang, 'Nauwet chiya', 'Namn', 'Name');
