@@ -1,5 +1,5 @@
 import React from 'react';
-import button from '../minicomponents/button'
+import button from '../subcomponents/button'
 const LangBar = ({ setLanguage }) => {
   return (
     <div>

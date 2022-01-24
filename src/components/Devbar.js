@@ -1,5 +1,5 @@
 import React from 'react';
-import button from '../minicomponents/button';
+import button from '../subcomponents/button';
 import { testBackend } from '../Services/ApiClient';
 
 const Devbar = () => {

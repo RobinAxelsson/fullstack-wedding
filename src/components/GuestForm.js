@@ -3,7 +3,7 @@ import {
 } from '../Services/Utilities';
 import { useState } from 'react';
 import { postGuest } from '../Services/ApiClient';
-import button from '../minicomponents/button';
+import button from '../subcomponents/button';
 
 const GuestForm = ({ language }) => {
   const [name, setName] = useState([]);
