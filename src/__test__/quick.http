@@ -1,0 +1,15 @@
+GET https://localhost:5001/api/guest
+
+###
+
+POST https://localhost:5001/api/guest
+content-type: application/json
+
+{
+    "name": "Rob",
+    "age": 33,
+    "myPreferedLanguage": "eng",
+    "closestTo": "Shanna",
+    "hobbies": "tejp lakan",
+    "relation": "lekplatsen"
+}
