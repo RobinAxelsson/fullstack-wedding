@@ -22,4 +22,4 @@ export const hobbiesText = (lang) =>
 export const nameText = (lang) =>
   baseTranslation(lang, 'Nauwet chiya', 'Namn', 'Name');
 export const relationText = (lang) =>
-  baseTranslation(lang, 'Phiuhndi', 'Hur träffades ni?', 'How did you meet?');
+  baseTranslation(lang, 'Phiuhndi', 'Hur träffade ni bruden/brudgummen?', 'How did you meet the bride/groom?');

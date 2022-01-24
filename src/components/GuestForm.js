@@ -10,16 +10,12 @@ import {
 import { useState } from 'react';
 import { postGuest } from '../Services/ApiClient';
 
-
-
 const GuestForm = ({ language }) => {
   const [name, setName] = useState([]);
   const [closestTo, setClosestTo] = useState([]);
   const [age, setAge] = useState([]);
   const [relation, setRelation] = useState([]);
   const [hobbies, setHobbies] = useState([]);
-
-  
 
   return (
     <div className="">

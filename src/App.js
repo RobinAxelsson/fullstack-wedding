@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GuestForm from './components/GuestForm';
 import { useState } from 'react';
-import { languageBtnText } from './Services/Translator';
-import { testBackend } from './Services/ApiClient';
+import Devbar from './components/Devbar';
+import Navbar from './components/Navbar';
 
 function App() {
   document.title = 'Wedding app';
@@ -17,35 +17,9 @@ function App() {
             path="/"
             element={
               <div>
+                <Navbar language={language} setLanguage={setLanguage}/>
                 <GuestForm language={language} />
-                <button
-                  className="mt-1 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setLanguage(
-                      language === 'swe'
-                        ? 'eng'
-                        : language === 'eng'
-                        ? 'kurdi'
-                        : language === 'kurdi'
-                        ? 'swe'
-                        : undefined
-                    );
-                  }}
-                >
-                  {languageBtnText(language)}
-                </button>
-                {process.env.REACT_APP_ENVIRONMENT === 'Development' && (
-                  <button
-                    className="mt-1 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={async (e) => {
-                      e.preventDefault();
-                      await testBackend();
-                    }}
-                  >
-                    Test Backend
-                  </button>
-                )}
+                {process.env.REACT_APP_ENVIRONMENT === 'Development' && (<Devbar />)}
               </div>
             }
           />
