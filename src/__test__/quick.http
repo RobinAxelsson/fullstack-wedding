@@ -11,5 +11,7 @@ content-type: application/json
     "myPreferedLanguage": "eng",
     "closestTo": "Shanna",
     "hobbies": "tejp lakan",
-    "relation": "lekplatsen"
+    "relation": "lekplatsen",
+    "email": "rob",
+    "specialFood": "nej"
 }

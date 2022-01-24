@@ -12,6 +12,7 @@ const GuestForm = ({ language }) => {
   const [relation, setRelation] = useState([]);
   const [specialFood, setSpecialFood] = useState([]);
   const [hobbies, setHobbies] = useState([]);
+  const [email, setEmail] = useState([]);
 
   return (
     <div className="">
@@ -54,6 +55,7 @@ const GuestForm = ({ language }) => {
                   {field(langShift(language, 'Berdjewendi?', 'Intressen', 'Interests'), setHobbies)}
                   {field(langShift(language, 'Phiuhndi', 'Hur träffade ni bruden/brudgummen?', 'How did you meet the bride/groom?'), setRelation)}
                   {field(langShift(language, 'Allergiaka', 'Någon specialmat?', 'Any special foods?'), setSpecialFood)}
+                  {field(langShift(language, 'Email', 'Email', 'Email'), setEmail)}
                 </>
               );
             })()}
@@ -65,7 +67,8 @@ const GuestForm = ({ language }) => {
                 relation,
                 age,
                 hobbies: hobbies,
-                specialFood: specialFood
+                specialFood: specialFood,
+                email: email,
               };
               console.log('submitted', guest);
               await postGuest(guest);
