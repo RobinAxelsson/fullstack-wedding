@@ -18,16 +18,14 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Router>
-          <Navbar language={language} toggle={toggle} />
+          <Navbar language={language} toggle={toggle} setLanguage={setLanguage} />
           <Dropdown language={language} isOpen={isOpen} toggle={toggle} />
         <Routes>
           <Route
             path="/"
             element={
               <div>
-
                 <GuestForm language={language} toggle={toggle} />
-                <LangBar language={language} setLanguage={setLanguage}/>
                 {process.env.REACT_APP_ENVIRONMENT === 'Development' && (<Devbar />)}
               </div>
             }
