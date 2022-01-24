@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import GuestForm from './components/GuestForm';
 import { useState } from 'react';
 import Devbar from './components/Devbar';
+import LangBar from './components/LangBar';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -12,13 +13,15 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Router>
+          <Navbar language={language} />
         <Routes>
           <Route
             path="/"
             element={
               <div>
-                <Navbar language={language} setLanguage={setLanguage}/>
+
                 <GuestForm language={language} />
+                <LangBar language={language} setLanguage={setLanguage}/>
                 {process.env.REACT_APP_ENVIRONMENT === 'Development' && (<Devbar />)}
               </div>
             }
