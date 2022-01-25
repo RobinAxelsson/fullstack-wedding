@@ -1,26 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-namespace wedding_api.Controllers;
 
 [ApiController]
 [Route("api/[action]")]
 public class Controller : ControllerBase
 {
     private readonly ILogger<Controller> _logger;
-    private readonly Repository _repository;
+    private readonly IRepository _repository;
+    private readonly IEmailClient _emailClient;
 
-    public Controller(ILogger<Controller> logger, Repository repository)
+    public Controller(ILogger<Controller> logger, IRepository repository, IEmailClient emailClient, IConfiguration configuration)
     {
         _logger = logger;
         _repository = repository;
+        _emailClient = emailClient;
     }
 
     [HttpPost]
     public async Task<IActionResult> Guest([BindRequired] GuestDto guestDto)
     {
         var guest = new Guest(guestDto);
-        Console.WriteLine(guest.ToString());
         await _repository.InsertGuest(guest);
+        _emailClient.SendConfirmation(guest);
         return StatusCode(202);
     }
     [HttpGet]
