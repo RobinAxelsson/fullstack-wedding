@@ -7,8 +7,10 @@
     <RootNamespace>wedding_api</RootNamespace>
     <UserSecretsId>826320d3-da29-4eb1-9d12-9417062f4bd0</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
+    <Content Include="resources\template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>  
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>

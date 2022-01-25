@@ -1,21 +1,21 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 if(builder.Configuration.GetValue<bool>("Email:Enabled"))
-    builder.Services.AddSingleton<IEmailClient, EmailClient>();
+    builder.Services.AddSingleton<IMessageClient, EmailClient>();
 else
-    builder.Services.AddSingleton<IEmailClient, FakeEmailClient>();
+    builder.Services.AddSingleton<IMessageClient, FakeEmailClient>();
 
 if(builder.Configuration.GetValue<bool>("Database:Enabled"))
     builder.Services.AddSingleton<IRepository, Repository>();
 else
     builder.Services.AddSingleton<IRepository, FakeRepository>();
+
+builder.Services.AddSingleton<HtmlParser>();
 
 var app = builder.Build();
 

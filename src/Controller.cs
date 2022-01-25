@@ -7,13 +7,15 @@ public class Controller : ControllerBase
 {
     private readonly ILogger<Controller> _logger;
     private readonly IRepository _repository;
-    private readonly IEmailClient _emailClient;
+    private readonly IMessageClient _emailClient;
+    private readonly HtmlParser _htmlParser;
 
-    public Controller(ILogger<Controller> logger, IRepository repository, IEmailClient emailClient, IConfiguration configuration)
+    public Controller(ILogger<Controller> logger, IRepository repository, IMessageClient emailClient, IConfiguration configuration, HtmlParser htmlParser)
     {
         _logger = logger;
         _repository = repository;
         _emailClient = emailClient;
+        _htmlParser = htmlParser;
     }
 
     [HttpPost]
@@ -21,7 +23,8 @@ public class Controller : ControllerBase
     {
         var guest = new Guest(guestDto);
         await _repository.InsertGuest(guest);
-        _emailClient.SendConfirmation(guest);
+        var html = _htmlParser.ParseTemplate(guest);
+        _emailClient.SendConfirmation(guest, html);
         return StatusCode(202);
     }
     [HttpGet]

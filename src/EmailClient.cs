@@ -1,11 +1,11 @@
 using System.Net;
 using System.Net.Mail;
 
-public interface IEmailClient
+public interface IMessageClient
 {
-    void SendConfirmation(Guest guest);
+    void SendConfirmation(Guest guest, string html);
 }
-public class EmailClient : IEmailClient
+public class EmailClient : IMessageClient
 {
     private readonly ILogger<EmailClient> _logger;
     private readonly IConfiguration _configuration;
@@ -21,7 +21,7 @@ public class EmailClient : IEmailClient
         _senderPassword = _configuration["Email:Password"];
         _smtpClient = _configuration["Email:SmtpClient"];
     }
-    public void SendConfirmation(Guest guest)
+    public void SendConfirmation(Guest guest, string html)
     {
         var smtpClient = new SmtpClient(_smtpClient)
         {
@@ -34,7 +34,7 @@ public class EmailClient : IEmailClient
             From = new MailAddress(_senderEmail),
             Subject = "Wedding confirmation",
             IsBodyHtml = true,
-            Body = "<h1>Hello World</h1>"
+            Body = html,
         };
         message.To.Add(guest.Email);
         smtpClient.Send(message);
@@ -42,16 +42,17 @@ public class EmailClient : IEmailClient
         _logger.LogInformation("Sent email to: " + guest.Email);
     }
 }
-public class FakeEmailClient : IEmailClient
+public class FakeEmailClient : IMessageClient
 {
-    private readonly ILogger<FakeEmailClient> logger;
+    private readonly ILogger<FakeEmailClient> _logger;
     public FakeEmailClient(ILogger<FakeEmailClient> logger)
     {
-        this.logger = logger;
+        _logger = logger;
     }
-    public void SendConfirmation(Guest guest)
+    public void SendConfirmation(Guest guest, string html)
     {
-        logger.LogInformation("Skipped emailing: " + guest.Email);
+        _logger.LogInformation("Skipped emailing: " + guest.Email);
+        File.WriteAllText(".\\index.html", html);
     }
 }
 

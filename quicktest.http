@@ -6,9 +6,9 @@ POST https://localhost:5001/api/guest
 content-type: application/json
 
 {
-    "name": "Rob",
-    "age": 33,
-    "myPreferedLanguage": "eng",
+    "name": "Robin Axelsson",
+    "age": 30,
+    "myPreferedLanguage": "swe",
     "closestTo": "Shanna",
     "hobbies": "tejp lakan",
     "relation": "lekplatsen",
