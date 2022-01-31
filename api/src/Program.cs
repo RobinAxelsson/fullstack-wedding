@@ -17,6 +17,15 @@ else
 
 builder.Services.AddSingleton<HtmlParser>();
 
+var config = builder.Configuration;
+
+Console.WriteLine("Password: " + config["Email:Password"]);
+Console.WriteLine("Email: " + config["Email:Address"]);
+Console.WriteLine($"Application Name: {builder.Environment.ApplicationName}");
+Console.WriteLine($"Environment Name: {builder.Environment.EnvironmentName}");
+Console.WriteLine($"ContentRoot Path: {builder.Environment.ContentRootPath}");
+Console.WriteLine($"WebRootPath: {builder.Environment.WebRootPath}");
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -26,6 +35,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
