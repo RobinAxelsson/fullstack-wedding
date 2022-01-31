@@ -1,0 +1,17 @@
+GET https://localhost:5001/api/guest
+
+###
+
+POST https://localhost:5001/api/guest
+content-type: application/json
+
+{
+    "name": "Robin Axelsson",
+    "age": 30,
+    "myPreferedLanguage": "swe",
+    "closestTo": "Shanna",
+    "hobbies": "tejp lakan",
+    "relation": "lekplatsen",
+    "email": "axelsson_1991@hotmail.com",
+    "specialFood": "nej"
+}

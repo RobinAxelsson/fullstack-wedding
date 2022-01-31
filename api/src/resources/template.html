@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Email</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Brush Script MT;
+            font-size: xx-large
+        }
+
+        body {
+            text-align: center;
+            display: row;
+            align-items: center;
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-position-y: 220px;
+        }
+
+        #text-container {
+            padding: 8%;
+            padding-bottom: 2%;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        #button {
+            justify-content: center;
+            text-align: center;
+            width: fit-content;
+            margin: auto;
+            border-radius: 10px;
+            border-width: 1px;
+            border-color: black;
+            border-style: solid;
+            background-color: rgba(184, 165, 149, 0.5);
+            padding: 3px 17px 3px 17px;
+        }
+
+        img {
+            width: 100%;
+            max-width: max-content;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: initial;
+            max-width: 300px;
+        }
+
+        @media (max-width: 400px) {
+            * {
+                font-size: x-large;
+            }
+        }
+
+        @media (max-width: 300px) {
+            * {
+                font-size: large;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text-container">
+        @PTag
+        <div id="button">
+            <a href="@FrontendSrc" class="button">@ButtonText</a>
+        </div>
+    </div>
+    <div id="image-div">
+        <img src="@ImageSrc" alt="">
+    </div>
+</body>
+
+</html>
