@@ -41,6 +41,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapFallbackToFile("index.html");
+
 app.MapGet("api/test", () => "Hello World");
 
 app.Run();

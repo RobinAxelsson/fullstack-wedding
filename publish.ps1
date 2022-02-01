@@ -20,9 +20,6 @@ $list=$(dotnet user-secrets list)
 $password=$($list -match "Email:Password" -replace "Email:Password = ")
 $email=$($list -match "Email:Address" -replace "Email:Address = ")
 
-Write-Output ------->Email: $email
-Write-Output ------->Password: $password
-
 cd ..\..
 
 $list=$(dotnet user-secrets list)
