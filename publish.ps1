@@ -22,7 +22,6 @@ $email=$($list -match "Email:Address" -replace "Email:Address = ")
 
 cd ..\..
 
-$list=$(dotnet user-secrets list)
 $Env:Email:Password = $password
 $Env:Email:Address = $email
 
