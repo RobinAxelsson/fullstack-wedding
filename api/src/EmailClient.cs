@@ -3,7 +3,7 @@ using System.Net.Mail;
 
 public interface IMessageClient
 {
-    void SendConfirmation(Guest guest, string html);
+    void SendConfirmation(Guest guest, string html); 
 }
 public class EmailClient : IMessageClient
 {
