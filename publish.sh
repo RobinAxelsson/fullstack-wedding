@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-
-if [ -d "dist" ]; then
-    echo "------->resetting dist
+echo "------->resetting dist
 "
+if [ -d "dist" ]; then
     rm -rf dist
 fi
 
@@ -16,19 +15,28 @@ echo "------->Publishing api to dist...
 
 cd api/src && dotnet publish -o ../../dist
 
-echo "------->Published about to run exe
-"
 list="$(dotnet user-secrets list)"
 passLine=$(echo "$list" | grep "Email:Password")
 emailLine=$(echo "$list" | grep "Email:Address")
 
+cd ../..
+
+if [ ! -d "./dist/wwwroot" ]; then
+    echo Adding wwwroot
+    mkdir dist/wwwroot
+fi
+
+echo "------->Moving build
+"
+cp -r app/build/*  dist/wwwroot
+
+echo "------->Published about to run exe
+"
+
 password="${passLine/Email:Password/""}"
 email=${emailLine/Email:Address/""}
-
-cd ../..
 
 export Email__Password="$password"
 export Email__Address="$email"
 
 cd dist && ./wedding-api.exe
-cd ..
