@@ -1,0 +1,17 @@
+version: '0.1'
+
+services:
+  wedding-app:
+    image: wedding-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Email:Address=compose-email
+      - Email:Password=compose-password
+      - Email:SmtpClient=compose-smtp
+      - Database:Enabled=true
+    ports:
+      - 3000:3000
+      - 10002:10002
