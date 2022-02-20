@@ -1,4 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
+
+if(config.GetValue<bool>("Database:Local")) 
+    config["ConnectionString"] = "UseDevelopmentStorage=true";
 
 builder.Services.AddControllers();
 
@@ -17,7 +21,6 @@ else
 
 builder.Services.AddSingleton<HtmlParser>();
 
-var config = builder.Configuration;
 
 Console.WriteLine("Password: " + config["Email:Password"]);
 Console.WriteLine("Email: " + config["Email:Address"]);
