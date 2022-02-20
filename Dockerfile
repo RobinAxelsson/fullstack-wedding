@@ -1,9 +1,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal AS base
 WORKDIR /app
-EXPOSE 3000
+EXPOSE 80
+EXPOSE 443
 
-ENV ASPNETCORE_URLS=http://+:3000
 ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ASPNETCORE_URLS=https://+:80
 
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser

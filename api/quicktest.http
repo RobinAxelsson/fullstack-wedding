@@ -2,11 +2,11 @@ GET https://localhost:5001/api/guest
 
 ###
 
-POST https://localhost:5001/api/guest
+POST https://localhost:8001/api/guest
 content-type: application/json
 
 {
-    "name": "Robin Axelsson",
+    "name": "Anja Axelsson",
     "age": 30,
     "myPreferedLanguage": "swe",
     "closestTo": "Shanna",
@@ -18,11 +18,11 @@ content-type: application/json
 
 ###
 
-POST http://localhost:3000/guest
+POST http://localhost:3000/api/guest
 content-type: application/json
 
 {
-    "name": "Robin Axelsson",
+    "name": "Carl Axelsson",
     "age": 30,
     "myPreferedLanguage": "swe",
     "closestTo": "Shanna",

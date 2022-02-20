@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Devbar from './components/Devbar';
 import Navbar from './components/Navbar';
 import Dropdown from './components/Dropdown';
+import { urlPostGuest } from './consts/urls';
 function App() {
   document.title = 'Wedding app';
   const [language, setLanguage] = useState('eng');
@@ -29,7 +30,7 @@ function App() {
               </div>
             }
           />
-          <Route path="/test" element={<h1>Hello Test</h1>} />
+          <Route path="/test" element={<><h1>Hello Test</h1><h1> Test postguest: {urlPostGuest()}</h1></>} />
         </Routes>
       </Router>
     </div>

@@ -24,6 +24,7 @@ builder.Services.AddSingleton<HtmlParser>();
 
 Console.WriteLine("Password: " + config["Email:Password"]);
 Console.WriteLine("Email: " + config["Email:Address"]);
+Console.WriteLine("ConnectionString: " + config["ConnectionString"]);
 Console.WriteLine($"Application Name: {builder.Environment.ApplicationName}");
 Console.WriteLine($"Environment Name: {builder.Environment.EnvironmentName}");
 Console.WriteLine($"ContentRoot Path: {builder.Environment.ContentRootPath}");

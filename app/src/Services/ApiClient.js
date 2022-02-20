@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { URL } from '../consts/urls';
+import { urlPostGuest, urlGetTest } from '../consts/urls';
 export async function postGuest(guest) {
-  console.log('postUrl', URL.postGuest);
+  console.log('postUrl', urlPostGuest());
   const response = await axios
-    .post(URL.postGuest, guest)
+    .post(urlPostGuest(), guest)
     .catch((err) => {
       console.log(err);
       return;
@@ -11,8 +11,8 @@ export async function postGuest(guest) {
   console.log('response', response);
 }
 export async function testBackend() {
-  console.log(URL.getTest);
-  const response = await axios.get(URL.getTest).catch((err) => {
+  console.log("URL.getTest", urlGetTest());
+  const response = await axios.get(urlGetTest()).catch((err) => {
     console.log(err);
     return;
   });

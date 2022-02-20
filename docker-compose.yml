@@ -7,6 +7,19 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=8001
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=${CertPassword}
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - Database:Local=false
+      - ConnectionString=${ConnectionString}
+      - Email:Enabled=false
+      - Email:Address=${EmailAddress}
+      - Email:Password=${EmailPassword}
+      - Email:SmtpClient=${EmailSmtpClient}
     ports:
-      - 3000:3000
+      - 8000:80
+      - 8001:443
+    volumes:
+      - ${USERPROFILE}/.aspnet/https:/https/
