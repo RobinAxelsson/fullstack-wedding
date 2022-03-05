@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_7901393622c24cc79854285a66a6dcc6 }}/test:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_7901393622c24cc79854285a66a6dcc6 }}/wedding-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'conainer-wedding-app-220709'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_95875267409842288d460ea37e7717a2 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_7901393622c24cc79854285a66a6dcc6 }}/test:${{ github.sha }}'
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_7901393622c24cc79854285a66a6dcc6 }}/wedding-app:${{ github.sha }}'
