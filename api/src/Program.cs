@@ -21,6 +21,7 @@ else
 
 builder.Services.AddSingleton<HtmlParser>();
 
+builder.Services.AddHealthChecks();
 
 Console.WriteLine("Password: " + config["Email:Password"]);
 Console.WriteLine("Email: " + config["Email:Address"]);
@@ -48,5 +49,7 @@ app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 app.MapGet("api/test", () => "Hello World");
+
+app.MapHealthChecks("/healthz");
 
 app.Run();
