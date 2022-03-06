@@ -33,4 +33,10 @@ cp -r app/build/*  dist/wwwroot
 echo "------->Published about to run exe
 "
 
+password="${passLine/Email:Password/""}"
+email=${emailLine/Email:Address/""}
+
+export Email__Password="$password"
+export Email__Address="$email"
+
 cd dist && ./wedding-api.exe
