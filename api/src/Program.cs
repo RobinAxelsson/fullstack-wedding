@@ -25,15 +25,19 @@ builder.Services.AddSingleton<HtmlParser>();
 
 builder.Services.AddHealthChecks();
 
-Console.WriteLine("Password: " + config["Email:Password"]);
-Console.WriteLine("Email: " + config["Email:Address"]);
-Console.WriteLine("ConnectionString: " + config["ConnectionString"]);
-Console.WriteLine($"Application Name: {builder.Environment.ApplicationName}");
-Console.WriteLine($"Environment Name: {builder.Environment.EnvironmentName}");
-Console.WriteLine($"ContentRoot Path: {builder.Environment.ContentRootPath}");
-Console.WriteLine($"WebRootPath: {builder.Environment.WebRootPath}");
 
 var app = builder.Build();
+
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogInformation("Password: " + config["Email:Password"]);
+logger.LogInformation("Email: " + config["Email:Address"]);
+logger.LogInformation("ConnectionString: " + config["ConnectionString"]);
+logger.LogInformation($"Application Name: {builder.Environment.ApplicationName}");
+logger.LogInformation($"Environment Name: {builder.Environment.EnvironmentName}");
+logger.LogInformation($"ContentRoot Path: {builder.Environment.ContentRootPath}");
+logger.LogInformation($"WebRootPath: {builder.Environment.WebRootPath}");
+
 
 if (app.Environment.IsDevelopment())
 {
