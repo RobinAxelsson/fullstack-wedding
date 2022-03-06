@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+if(config.GetValue<bool>("UseHttpsRedirection")) app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseAuthorization();
