@@ -6,6 +6,8 @@ if(config.GetValue<bool>("Database:Local"))
 
 builder.Services.AddControllers();
 
+builder.Services.AddApplicationInsightsTelemetry(config);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -11,6 +11,7 @@
     <Content Include="resources\template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>  
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.19.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>

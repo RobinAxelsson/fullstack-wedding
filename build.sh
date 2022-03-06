@@ -16,7 +16,7 @@ cd api/src && dotnet publish -o "$1"
 
 cd ../..
 
-mkdir $1/wwwroot
+mkdir "$1/wwwroot"
 
 echo "------->Moving build
 "
